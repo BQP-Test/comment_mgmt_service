@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  bqp-comment-mgmt-service:
+    image: bqp-comment-mgmt-service
+    container_name: bqp-comment-mgmt-service
+    build:
+      context: ./
+      dockerfile: ./compose/local/Dockerfile
+    command: /start
+    env_file:
+      - src/config/.env
+    expose:
+      - 6003
+    volumes:
+      - .:/app:z
+    ports:
+      - 6003:6003
+
+
+networks:
+  default:
+    external:
+      name: bqp_network
